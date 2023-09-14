@@ -204,7 +204,7 @@ function App() {
 
 			<header className={styles.header}>
 				<h1>TODO</h1>
-				<img alt="Theme icon" src={mode ? "/icon/icon-moon.svg" : "/icon/icon-sun.svg"} onClick={() => setMode(!mode) }	/>
+				<img alt="Theme icon" src={mode ? "icon/icon-moon.svg" : "icon/icon-sun.svg"} onClick={() => setMode(!mode) }	/>
 			</header>
 
 			<main className={styles.sectionMainContainer}>

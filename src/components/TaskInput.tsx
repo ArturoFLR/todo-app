@@ -53,7 +53,7 @@ const TaskInput = ({addTask, mode}: TaskInputProps) => {
 			<div className={mode ? `${styles.mainContainer} ${styles.mainContainerLight}` : `${styles.mainContainer} ${styles.mainContainerDark}`}>
 				<input type="text" name="newTask" id="newTask" placeholder="Create a new todo..."></input>
 				<button type="button" id="addTask" onClick={handleAddTask}>
-					<img alt="Add new task" src="/icon/icon-add.svg"></img>
+					<img alt="Add new task" src="icon/icon-add.svg"></img>
 				</button>
 				<p id="errorMessage">Write a description!</p>
 			
