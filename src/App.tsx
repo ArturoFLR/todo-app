@@ -228,9 +228,9 @@ function App() {
 					<TaskFilter mode={mode} filter={filter} setFilter={setFilter}/>
 				</div>
 
+				<p className={mode ? `${styles.reorderMessage} ${styles.reorderMessageLight}` : `${styles.reorderMessage} ${styles.reorderMessageDark}`}>Drag and drop to reorder list</p>
+				
 			</main>
-
-			<p className={mode ? `${styles.reorderMessage} ${styles.reorderMessageLight}` : `${styles.reorderMessage} ${styles.reorderMessageDark}`}>Drag and drop to reorder list</p>
 
 		</div>
 	);
