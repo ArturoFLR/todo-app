@@ -67,7 +67,7 @@ $DTDarkGrayishBlue: hsl(234, 11%, 52%);
 	}
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1000px) {
 	.mainContainer {
 		column-gap: 2rem;
 		height: 6.5rem;
@@ -114,5 +114,11 @@ $DTDarkGrayishBlue: hsl(234, 11%, 52%);
 		.filterActive {
 			color: $BrightBlue;
 		}
+	}
+}
+
+@media (max-width: 1300px) and (min-width: 1000px) {
+	.mainContainer {
+		column-gap: 0.8rem;
 	}
 }

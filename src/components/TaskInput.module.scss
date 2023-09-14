@@ -1,16 +1,23 @@
 $DTVeryDarkDesaturatedBlue: hsl(235, 24%, 19%);
 $DTLightGrayishBlue: hsl(234, 39%, 85%);
 
-@keyframes newTask {
+@keyframes newTaskMobile {
 	0% {
 		top: 0rem;
 		visibility: visible;
 	}
 	95% {
-		top: 8.8rem;
+		top: 6.9rem;
 	}
-	100% {
-		top: 8.8rem;
+}
+
+@keyframes newTaskDesktop {
+	0% {
+		top: 0rem;
+		visibility: visible;
+	}
+	95% {
+		top: 8.9rem;
 	}
 }
 
@@ -87,12 +94,12 @@ $DTLightGrayishBlue: hsl(234, 39%, 85%);
 }
 
 .mainContainerCopyAnimation {
-	animation: newTask 1.2s;
+	animation: newTaskMobile 0.7s;
 }
 
 
 
-@media (min-width: 1440px) {
+@media (min-width: 1000px) {
 	.mainContainer, .mainContainerCopy {
 		height: 6.5rem;
 		padding: 0vh 1vw 0vh 2vw;
@@ -119,5 +126,9 @@ $DTLightGrayishBlue: hsl(234, 39%, 85%);
 			left: 37%;
 			font-size: 1.4rem;
 		}
+	}
+
+	.mainContainerCopyAnimation {
+		animation: newTaskDesktop 0.7s;
 	}
 }

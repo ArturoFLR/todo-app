@@ -21,7 +21,7 @@ const TaskInput = ({addTask, mode}: TaskInputProps) => {
 
 		removeAnimationClass = setTimeout(() => {
 			taskContainerCopy.classList.remove(styles.mainContainerCopyAnimation);
-		}, 1201);
+		}, 701);
 
 	}
 	
@@ -35,7 +35,7 @@ const TaskInput = ({addTask, mode}: TaskInputProps) => {
 			errorMessage.classList.remove(styles.showError);
 			animateNewTask();
 			inputField.value= "";
-			addTaskTimeout = setTimeout(addTask, 1203, newTask);	// Runs after the timeout which removes the mainContainerCopyAnimation class, so as not to remove it with useEffect's cleanup function
+			addTaskTimeout = setTimeout(addTask, 703, newTask);	// Runs after the timeout which removes the mainContainerCopyAnimation class, so as not to remove it with useEffect's cleanup function
 		} else {
 			errorMessage.classList.add(styles.showError);
 		}

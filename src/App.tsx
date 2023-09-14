@@ -98,7 +98,7 @@ function App() {
 				<div key={element.id} draggable="true" className={styles.taskItem}>
 					<div onClick={changeTaskStatus}  id={element.id} className={element.completed ? `${styles.taskIconCompleted}` : `${styles.taskIconIncomplete}`}></div>
 					<p className={element.completed ? `${styles.taskTextCompleted}` : `${styles.taskTextIncomplete}`}>{element.description}</p>
-					<img alt="Icon Delete" src="/icon/icon-cross.svg" id={element.id} onClick={deleteTask}/> 
+					<img alt="Icon Delete" src="icon/icon-cross.svg" id={element.id} onClick={deleteTask}/> 
 				</div>
 			));
 		} else if (filter === "active") {
@@ -108,7 +108,7 @@ function App() {
 						<div key={element.id} draggable="true" className={styles.taskItem}>
 							<div onClick={changeTaskStatus}  id={element.id} className={element.completed ? `${styles.taskIconCompleted}` : `${styles.taskIconIncomplete}`}></div>
 							<p className={element.completed ? `${styles.taskTextCompleted}` : `${styles.taskTextIncomplete}`}>{element.description}</p>
-							<img alt="Icon Delete" src="/icon/icon-cross.svg" id={element.id} onClick={deleteTask}/> 
+							<img alt="Icon Delete" src="icon/icon-cross.svg" id={element.id} onClick={deleteTask}/> 
 						</div>
 					);
 				}
@@ -120,7 +120,7 @@ function App() {
 						<div key={element.id} draggable="true" className={styles.taskItem}>
 							<div onClick={changeTaskStatus}  id={element.id} className={element.completed ? `${styles.taskIconCompleted}` : `${styles.taskIconIncomplete}`}></div>
 							<p className={element.completed ? `${styles.taskTextCompleted}` : `${styles.taskTextIncomplete}`}>{element.description}</p>
-							<img alt="Icon Delete" src="/icon/icon-cross.svg" id={element.id} onClick={deleteTask}/> 
+							<img alt="Icon Delete" src="icon/icon-cross.svg" id={element.id} onClick={deleteTask}/> 
 						</div>
 					);
 				}
