@@ -1,0 +1,123 @@
+$DTVeryDarkDesaturatedBlue: hsl(235, 24%, 19%);
+$DTLightGrayishBlue: hsl(234, 39%, 85%);
+
+@keyframes newTask {
+	0% {
+		top: 0rem;
+		visibility: visible;
+	}
+	95% {
+		top: 8.8rem;
+	}
+	100% {
+		top: 8.8rem;
+	}
+}
+
+
+.mainContainer, .mainContainerCopy {
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+	height: 5rem;
+	padding: 0vh 4vw 0vh 4vw;
+	border-radius: 5px;
+
+	input {
+		width: 90%;
+		border: 0px;
+		outline: 0px;
+		font-family: 'Josefin Sans', sans-serif;
+		font-size: 1.5rem;
+	}
+
+	button {
+		width: 10%;
+		border: 0px;
+		background-color: white;
+		cursor: pointer;		
+
+		img {
+			width: 30px;
+			margin-top: 0.6rem;
+		}
+	}
+
+	p {
+		position: absolute;
+		bottom: 0%;
+		left: 30%;
+		color: rgb(179, 62, 42);
+		font-size: 1.1rem;
+		display: none;
+	}
+
+	.showError {
+		display: block;
+	}
+}
+
+.mainContainerLight, .mainContainerLightCopy {
+	background-color: white;
+}
+
+.mainContainerDark, .mainContainerDarkCopy {
+	background-color: $DTVeryDarkDesaturatedBlue;
+
+	input {
+		background-color: $DTVeryDarkDesaturatedBlue;
+		color: $DTLightGrayishBlue;
+	}
+
+	button {
+		background-color: $DTVeryDarkDesaturatedBlue;
+	}
+
+	p {
+		color: rgb(196, 116, 106);
+	}
+}
+
+.mainContainerCopy {
+	visibility: hidden;
+	width: 100%;
+	position: absolute;
+	left: 0%;
+	top: 0%;
+}
+
+.mainContainerCopyAnimation {
+	animation: newTask 1.2s;
+}
+
+
+
+@media (min-width: 1440px) {
+	.mainContainer, .mainContainerCopy {
+		height: 6.5rem;
+		padding: 0vh 1vw 0vh 2vw;
+	
+		input {
+			font-size: 2rem;
+		}
+	
+		button {
+	
+			img {
+				width: 40px;
+				margin-top: 0.6rem;
+				transition-property: scale;
+				transition-duration: 0.5s;
+
+				&:hover {
+					scale: 1.25;
+				}
+			}
+		}
+	
+		p {
+			left: 37%;
+			font-size: 1.4rem;
+		}
+	}
+}

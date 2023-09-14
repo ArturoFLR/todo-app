@@ -1,0 +1,118 @@
+// Primary:
+$BrightBlue: hsl(220, 98%, 61%);
+
+// Light Theme:
+$LTDarkGrayishBlue: hsl(236, 9%, 61%);
+$LTVeryDarkGrayishBlue: hsl(235, 19%, 35%);
+
+// Dark Theme:
+$DTVeryDarkDesaturatedBlue: hsl(235, 24%, 19%);
+$DTLightGrayishBlueHover: hsl(236, 33%, 92%);
+$DTDarkGrayishBlue: hsl(234, 11%, 52%);
+
+
+.mainContainer {
+	display: flex;
+	justify-content: center;
+	column-gap: 2rem;
+	height: 5rem;
+	border-radius: 5px;
+	overflow: hidden;
+	box-shadow: 3px 6px 18px rgba(0, 0, 0, 0.12);
+
+
+	.filterButton {
+		border: 0px;
+		background-color: transparent;
+		font-family: 'Josefin Sans', sans-serif;
+		font-weight: 700;
+		font-size: 1.6rem;
+		cursor: pointer;
+	}
+
+	.filterActive {
+		color: $BrightBlue;
+	}
+}
+
+.mainContainerLight {
+	background-color: white;
+	
+	.filterButton {
+		color: $LTDarkGrayishBlue;
+
+		&:hover {
+			color: $LTVeryDarkGrayishBlue;
+		}
+	}
+
+	.filterActive {
+		color: $BrightBlue;
+	}
+}
+
+.mainContainerDark {
+	background-color: $DTVeryDarkDesaturatedBlue;
+
+	.filterButton {
+		color: $DTDarkGrayishBlue;
+
+		&:hover {
+			color: $DTLightGrayishBlueHover;
+		}
+	}
+
+	.filterActive {
+		color: $BrightBlue;
+	}
+}
+
+@media (min-width: 1440px) {
+	.mainContainer {
+		column-gap: 2rem;
+		height: 6.5rem;
+		box-shadow: none;	
+	
+		.filterButton {
+			border: 0px;
+			font-size: 1.6rem;
+			cursor: pointer;
+		}
+	
+		.filterActive {
+			color: $BrightBlue;
+		}
+	}
+	
+	.mainContainerLight {
+		background-color: white;
+		
+		.filterButton {
+			color: $LTDarkGrayishBlue;
+	
+			&:hover {
+				color: $LTVeryDarkGrayishBlue;
+			}
+		}
+
+		.filterActive {
+			color: $BrightBlue;
+		}
+	}
+	
+	.mainContainerDark {
+		background-color: $DTVeryDarkDesaturatedBlue;
+	
+		.filterButton {
+			color: $DTDarkGrayishBlue;
+	
+			&:hover {
+				color: $DTLightGrayishBlueHover;
+			}
+		}
+
+		.filterActive {
+			color: $BrightBlue;
+		}
+	}
+}

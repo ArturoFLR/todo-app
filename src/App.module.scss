@@ -1,0 +1,412 @@
+@import "./reset.css";
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
+				// FUENTES:
+// font-family: 'Josefin Sans', sans-serif;
+
+				// COLORES:
+// Primary:
+$BrightBlue: hsl(220, 98%, 61%);
+$CheckBackground: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+
+// Light Theme:
+$LTVeryLightGray: hsl(0, 0%, 98%);
+$LTVeryLightGrayishBlue: hsl(236, 33%, 92%);
+$LTLightGrayishBlue: hsl(233, 11%, 84%);
+$LTDarkGrayishBlue: hsl(236, 9%, 61%);
+$LTVeryDarkGrayishBlue: hsl(235, 19%, 35%);
+
+// Dark Theme:
+$DTVeryDarkBlue: hsl(235, 21%, 11%);
+$DTVeryDarkDesaturatedBlue: hsl(235, 24%, 19%);
+$DTLightGrayishBlue: hsl(234, 39%, 85%);
+$DTLightGrayishBlueHover: hsl(236, 33%, 92%);
+$DTDarkGrayishBlue: hsl(234, 11%, 52%);
+$DTVeryDarkGrayishBlue: hsl(233, 14%, 35%);
+$DTVeryDarkGrayishBlue2: hsl(237, 14%, 26%);
+
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-size: 1.6rem;
+	min-height: 100vh;
+}
+
+.mainContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: 100vh;
+	padding: 7vh 6vw 5vh 6vw;
+	background-repeat: no-repeat;
+	background-size: contain;
+	font-family: 'Josefin Sans', sans-serif;
+	overflow: scroll;
+
+	.header {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+
+		h1 {
+			font-size: 3rem;
+			font-weight: 700;
+			letter-spacing: 8px;
+			color: white;
+		}
+
+		img {
+			width: 25px;
+			height: 25px;
+			cursor: pointer;
+		}
+	}
+}
+
+.mainContainerLight {
+	background-color: $LTVeryLightGray;
+	background-image: url("@/img/bg-mobile-light.jpg");
+}
+
+.mainContainerDark {
+	background-color: $DTVeryDarkBlue;
+	background-image: url("@/img/bg-mobile-dark.jpg");
+}
+
+.sectionMainContainer {
+	width: 100%;
+}
+
+.tasksInputMainContainer {
+	width: 100%;
+	margin: 4vh 0vw 2.8vh 0vw; 
+}
+
+.tasksListContainer {
+	border-radius: 5px;
+	overflow: hidden;
+	box-shadow: 3px 6px 18px rgba(0, 0, 0, 0.12);
+	
+	.taskItem {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		cursor: grab;
+		height: 5rem;
+		padding: 0vh 4vw 0vh 4vw;
+		font-size: 1.5rem;
+
+		div {
+			width: 2rem;
+			height: 2rem;
+			border-radius: 100%;
+			cursor: pointer;
+
+			&:hover {
+				border: 1px solid $BrightBlue;
+			}
+		}
+
+		.taskIconCompleted {
+			background-image: url(@/icon/icon-check.svg), linear-gradient(to bottom right, hsl(192, 100%, 67%), hsl(280, 87%, 65%) 90%);
+			background-repeat: no-repeat;
+			background-position: 50%;
+			border: 0px;
+		}
+
+		p {
+			width: 80%;
+		}
+
+		.taskTextCompleted {
+			text-decoration: line-through;
+		}
+
+		.taskTextIncomplete {
+			text-decoration: none;
+		}
+
+		img {
+			width: 1.2rem;
+			cursor: pointer;
+		}
+	}
+
+	.taskCounterContainer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 5rem;
+		padding: 0vh 4vw 0vh 4vw;
+
+		p {
+			font-size: 1.3rem;
+		}
+
+		.taskFilterContainerDesktop {
+			display: none;
+		}
+
+		.deleteAllButton {
+			cursor: pointer;
+			border: 0px;
+			background-color: transparent;
+			font-family: 'Josefin Sans', sans-serif;
+			font-size: 1.4rem;
+		}
+	}
+}
+
+.tasksListContainerLight {
+	background-color: white;
+
+	.taskItem {
+		color: $LTVeryDarkGrayishBlue;
+		border-bottom: 1px solid $LTLightGrayishBlue;
+
+		div {
+			border: 1px solid $LTLightGrayishBlue;
+		}
+
+		.taskTextCompleted {
+			color: $LTLightGrayishBlue;
+		}
+	}
+
+	.dragover {
+		background-color: $LTLightGrayishBlue;
+	}
+
+	.taskCounterContainer {
+
+		p{
+			color: $LTDarkGrayishBlue;
+		}
+
+		.deleteAllButton {
+			color: $LTDarkGrayishBlue;
+
+			&:hover {
+				color: $LTVeryDarkGrayishBlue;
+			}
+		}
+	}
+}
+
+.tasksListContainerDark {
+	background-color: $DTVeryDarkDesaturatedBlue;
+
+	.taskItem {
+		color: $DTLightGrayishBlue;
+		border-bottom: 1px solid $DTVeryDarkGrayishBlue;
+
+		div {
+			border: 1px solid $DTVeryDarkGrayishBlue;
+		}
+
+		.taskTextCompleted {
+			color: $DTVeryDarkGrayishBlue2;
+			text-decoration-color: $DTVeryDarkGrayishBlue;
+		}
+	}
+
+	.dragover {
+		background-color: $DTVeryDarkGrayishBlue2;
+	}
+
+	.taskCounterContainer {
+		
+		p {
+			color: $DTDarkGrayishBlue;
+		}
+
+		.deleteAllButton {
+			color: $DTDarkGrayishBlue;
+
+			&:hover {
+				color: $DTLightGrayishBlueHover;
+			}
+		}
+	}
+}
+
+.taskFilterContainerMobile {
+	margin: 2vh 0vw 5vh 0vw;
+}
+
+.reorderMessage {
+	font-size: 1.4rem;
+}
+
+.reorderMessageLight {
+	color: $LTDarkGrayishBlue;
+}
+
+.reorderMessageDark {
+	color: $DTDarkGrayishBlue;
+}
+
+
+@media (min-width: 1000px) {
+
+	.mainContainer {
+		padding: 9vh 31.3vw 7vh 31.3vw;
+	
+		.header {
+	
+			h1 {
+				font-size: 4rem;
+				letter-spacing: 14px;
+			}
+	
+			img {
+				width: 33px;
+				height: 33px;
+			}
+		}
+	}
+	
+	.mainContainerLight {
+		background-image: url("@/img/bg-desktop-light.jpg");
+	}
+	
+	.mainContainerDark {
+		background-image: url("@/img/bg-desktop-dark.jpg");
+	}
+
+	.tasksInputMainContainer {
+		margin: 4vh 0vw 2.8vh 0vw;
+	}
+	
+	.tasksListContainer {
+		
+		.taskItem {
+			height: 6.5rem;
+			padding: 0vh 2vw 0vh 2vw;
+			font-size: 2rem;
+	
+			div {
+				width: 3rem;
+				height: 3rem;
+			}
+	
+			img {
+				visibility: hidden;
+				width: 2rem;
+				transition-property: scale;
+				transition-duration: 0.5s;
+
+				&:hover {
+					scale: 1.35;
+				}
+			}
+
+			&:hover {
+				img {
+					visibility: visible;
+				}
+			}
+		}
+	
+		.taskCounterContainer {
+			height: 6.5rem;
+			padding: 0vh 2vw 0vh 2vw;
+	
+			p {
+				font-size: 1.5rem;
+			}
+
+			.taskFilterContainerDesktop {
+				display: block;
+			}
+	
+			.deleteAllButton {
+				font-size: 1.5rem;
+			}
+		}
+	}
+	
+	.tasksListContainerLight {
+		background-color: white;
+	
+		.taskItem {
+			color: $LTVeryDarkGrayishBlue;
+			border-bottom: 1px solid $LTLightGrayishBlue;
+	
+			div {
+				border: 1px solid $LTLightGrayishBlue;
+			}
+	
+			.taskTextCompleted {
+				color: $LTLightGrayishBlue;
+			}
+		}
+	
+		.taskCounterContainer {
+	
+			p{
+				color: $LTDarkGrayishBlue;
+			}
+	
+			.deleteAllButton {
+				color: $LTDarkGrayishBlue;
+	
+				&:hover {
+					color: $LTVeryDarkGrayishBlue;
+				}
+			}
+		}
+	}
+	
+	.tasksListContainerDark {
+		background-color: $DTVeryDarkDesaturatedBlue;
+	
+		.taskItem {
+			color: $DTLightGrayishBlue;
+			border-bottom: 1px solid $DTVeryDarkGrayishBlue;
+	
+			div {
+				border: 1px solid $DTVeryDarkGrayishBlue;
+			}
+	
+			.taskTextCompleted {
+				color: $DTVeryDarkGrayishBlue2;
+				text-decoration-color: $DTVeryDarkGrayishBlue;
+			}
+		}
+	
+		.taskCounterContainer {
+			
+			p {
+				color: $DTDarkGrayishBlue;
+			}
+	
+			.deleteAllButton {
+				color: $DTDarkGrayishBlue;
+	
+				&:hover {
+					color: $DTLightGrayishBlueHover;
+				}
+			}
+		}
+	}
+	
+	.taskFilterContainerMobile {
+		display: none;
+	}
+	
+	.reorderMessage {
+		margin-top: 5vh;
+		font-size: 1.7rem;
+	}
+}
