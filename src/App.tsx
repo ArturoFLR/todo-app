@@ -133,7 +133,7 @@ function App() {
 		localStorage.setItem("userTasks", JSON.stringify(tasks));
 		localStorage.setItem("uniqueKey", JSON.stringify(uniqueKey.current));
 
-		// EVENT LISTENERS AND CLASSES FOR DRAGGABLE ITEMS
+		// EVENT LISTENERS, FUNCTIONS AND CLASSES FOR DRAGGABLE ITEMS
 		const draggableItems = document.querySelectorAll("div[draggable]");
 		let draggedItemId: string;
 		
@@ -148,7 +148,15 @@ function App() {
 
 		function handleDragover (this: HTMLElement, event: Event) {
 			event.preventDefault();
-			this.classList.add(styles.dragover);
+			const draggableItemsArray = Array.from(draggableItems);
+
+			draggableItemsArray.map( (element)=> {
+				element.classList.remove(styles.dragover);
+			});
+
+			if(this.firstElementChild!.id !== draggedItemId ) {
+				this.classList.add(styles.dragover);
+			}
 		}
 
 		function handleDragleave (this: HTMLElement) {
@@ -163,19 +171,34 @@ function App() {
 			// THIS REPRESENTS THE TARGET
 			const targetId = this.firstElementChild!.id;
 			const draggedItemIndex = tasks.findIndex( (element) => element.id === draggedItemId);
+			const targetIndex = tasks.findIndex( (element) => element.id === targetId);
 
 			const tasksCopy: Task[] = [];
 
-			tasks.map( (element) => {
-				if (element.id !== draggedItemId && element.id !== targetId) {
+			tasks.map ( (element) => {
+				switch (true) {
+				case element.id !== draggedItemId && element.id !== targetId:
+					tasksCopy.push(element);						
+					break;
+
+				case element.id !== draggedItemId && element.id === targetId && draggedItemIndex > targetIndex :
+					tasksCopy.push(tasks[draggedItemIndex]);	
+					tasksCopy.push(element);				
+					break;
+
+				case element.id !== draggedItemId && element.id === targetId && draggedItemIndex < targetIndex :
 					tasksCopy.push(element);
-				} else if (element.id !== draggedItemId && element.id === targetId) {
-					tasksCopy.push(tasks[draggedItemIndex]);
-					tasksCopy.push(element);
-				} else if (element.id === draggedItemId && element.id === targetId) {
-					tasksCopy.push(element);
+					tasksCopy.push(tasks[draggedItemIndex]);	
+					break;
+			
+				case element.id === draggedItemId && element.id === targetId:
+					tasksCopy.push(element);						
+					break;
+				
+				default:
+					break;
 				}
-			} );
+			});
 
 			setTasks(tasksCopy);
 		}
@@ -184,7 +207,7 @@ function App() {
 			element.addEventListener("dragstart", handleDragstart);
 			element.addEventListener("dragend", handleDragend);
 			element.addEventListener("dragover", handleDragover);
-			element.addEventListener("dragleave", handleDragleave);
+			// element.addEventListener("dragleave", handleDragleave);
 			element.addEventListener("drop", handleDrop);
 		});
 

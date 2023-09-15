@@ -183,6 +183,10 @@ body {
 		}
 	}
 
+	.dragging {
+		background-color: $LTVeryLightGrayishBlue;
+	}
+
 	.dragover {
 		background-color: $LTLightGrayishBlue;
 	}
@@ -295,6 +299,8 @@ body {
 			height: 6.5rem;
 			padding: 0vh 2vw 0vh 2vw;
 			font-size: 2rem;
+			transition-property: opacity;
+			transition-duration: 0.5s;
 	
 			div {
 				width: 3rem;
@@ -312,10 +318,17 @@ body {
 				}
 			}
 
-			&:hover {
-				img {
-					visibility: visible;
-				}
+			& img {
+				opacity: 0;
+				scale: 0.1;
+				transition-property: opacity, scale;
+				transition-duration: 1s;
+			}
+
+			&:hover img {
+				visibility: visible;
+				opacity: 1;
+				scale: 1;
 			}
 		}
 	
