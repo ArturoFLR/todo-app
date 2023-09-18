@@ -4,9 +4,10 @@ import styles from "./TaskInput.module.scss";
 type TaskInputProps = {
 	addTask: (description: string) => void, 
 	mode: boolean
+	firstLoad: boolean
 }
 
-const TaskInput = ({addTask, mode}: TaskInputProps) => {
+const TaskInput = ({addTask, mode, firstLoad}: TaskInputProps) => {
 
 	let addTaskTimeout: ReturnType<typeof setTimeout>;
 	let removeAnimationClass: ReturnType<typeof setTimeout>;
@@ -41,6 +42,35 @@ const TaskInput = ({addTask, mode}: TaskInputProps) => {
 		}
 	}
 
+	// RETURNS CLASSES FOR DARK / LIGHT THEMES AND ANIMATIONS DEPENDING ON THIS LOAD BEING THE FIRST OR NOT
+	function assignClasses (mainClass: string) {
+		const mainClassLight = mainClass + "Light";
+		const mainClassDark = mainClass + "Dark";
+		const mainClassAnimatedLight= mainClass + "AnimatedLight";
+		const mainClassAnimatedDark= mainClass + "AnimatedDark";
+
+		switch (true) {
+		case mode && firstLoad:
+			return `${styles[mainClass]} ${styles[mainClassLight]}`;
+			break;
+		
+		case mode && !firstLoad:
+			return `${styles[mainClass]} ${styles[mainClassLight]} ${styles[mainClassAnimatedLight]}`;
+			break;
+		
+		case !mode && firstLoad:
+			return `${styles[mainClass]} ${styles[mainClassDark]}`;
+			break;
+			
+		case !mode && !firstLoad:
+			return `${styles[mainClass]} ${styles[mainClassDark]} ${styles[mainClassAnimatedDark]}`;
+			break;
+				
+		default:
+			break;
+		}
+	}
+
 	useEffect( () => {
 		return () => {
 			clearTimeout(addTaskTimeout);
@@ -50,7 +80,7 @@ const TaskInput = ({addTask, mode}: TaskInputProps) => {
 
 	return (
 		<>
-			<div className={mode ? `${styles.mainContainer} ${styles.mainContainerLight}` : `${styles.mainContainer} ${styles.mainContainerDark}`}>
+			<div className={assignClasses("mainContainer")}>
 				<input type="text" name="newTask" id="newTask" placeholder="Create a new todo..."></input>
 				<button type="button" id="addTask" onClick={handleAddTask}>
 					<img alt="Add new task" src="icon/icon-add.svg"></img>

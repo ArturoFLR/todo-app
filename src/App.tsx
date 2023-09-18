@@ -9,6 +9,8 @@ function App() {
 	const [tasks, setTasks] = useState(TasksSavedInStorage ? (JSON.parse(TasksSavedInStorage) as Task[]) : []);
 	const [mode, setMode] = useState(true);
 	const [filter, setFilter] = useState("all");
+	const [firstLoad, setfirstLoad] = useState(true);
+	// const firstLoad = useRef(true);
 	const incompleteItemCounter = countIncompleteTasks();
 	const uniqueKeyInStorage = localStorage.getItem("uniqueKey");
 	const uniqueKey = useRef(uniqueKeyInStorage ? (JSON.parse(uniqueKeyInStorage) as number) : 0);
@@ -128,10 +130,43 @@ function App() {
 		}
 	}
 
+	// RETURNS CLASSES FOR DARK / LIGHT THEMES AND ANIMATIONS DEPENDING ON THIS LOAD BEING THE FIRST OR NOT
+	function assignClasses (mainClass: string) {
+		const mainClassLight = mainClass + "Light";
+		const mainClassDark = mainClass + "Dark";
+		const mainClassAnimatedLight= mainClass + "AnimatedLight";
+		const mainClassAnimatedDark= mainClass + "AnimatedDark";
+
+		switch (true) {
+		case mode && firstLoad:
+			return `${styles[mainClass]} ${styles[mainClassLight]}`;
+			break;
+		
+		case mode && !firstLoad:
+			return `${styles[mainClass]} ${styles[mainClassLight]} ${styles[mainClassAnimatedLight]}`;
+			break;
+		
+		case !mode && firstLoad:
+			return `${styles[mainClass]} ${styles[mainClassDark]}`;
+			break;
+			
+		case !mode && !firstLoad:
+			return `${styles[mainClass]} ${styles[mainClassDark]} ${styles[mainClassAnimatedDark]}`;
+			break;
+				
+		default:
+			break;
+		}
+	}
+
+
 	useEffect( () => {
 		// SAVE TASKS AND UNIQUEKEY TO LOCAL STORAGE
 		localStorage.setItem("userTasks", JSON.stringify(tasks));
 		localStorage.setItem("uniqueKey", JSON.stringify(uniqueKey.current));
+
+		// CHANGE firstLoad FLAG TO ASSIGN CORRECT LIGHT / DARK THEMES ANIMATIONS
+		setfirstLoad(false);
 
 		// EVENT LISTENERS, FUNCTIONS AND CLASSES FOR DRAGGABLE ITEMS
 		const draggableItems = document.querySelectorAll("div[draggable]");
@@ -157,10 +192,6 @@ function App() {
 			if(this.firstElementChild!.id !== draggedItemId ) {
 				this.classList.add(styles.dragover);
 			}
-		}
-
-		function handleDragleave (this: HTMLElement) {
-			this.classList.remove(styles.dragover);
 		}
 
 		function handleDrop (this: HTMLElement, event: Event) {
@@ -207,7 +238,6 @@ function App() {
 			element.addEventListener("dragstart", handleDragstart);
 			element.addEventListener("dragend", handleDragend);
 			element.addEventListener("dragover", handleDragover);
-			// element.addEventListener("dragleave", handleDragleave);
 			element.addEventListener("drop", handleDrop);
 		});
 
@@ -216,14 +246,13 @@ function App() {
 				element.removeEventListener("dragstart", handleDragstart);
 				element.removeEventListener("dragend", handleDragend);
 				element.removeEventListener("dragover", handleDragover);
-				element.removeEventListener("dragleave", handleDragleave);
 				element.removeEventListener("drop", handleDrop);
 			});
 		};
 	}, [tasks, filter]);
 
 	return (
-		<div className={mode ? `${styles.mainContainer} ${styles.mainContainerLight}` : `${styles.mainContainer} ${styles.mainContainerDark}`}>
+		<div className={assignClasses("mainContainer")}>
 
 			<header className={styles.header}>
 				<h1>TODO</h1>
@@ -233,25 +262,25 @@ function App() {
 			<main className={styles.sectionMainContainer}>
 
 				<div className={styles.tasksInputMainContainer}>
-					<TaskInput addTask={addTask} mode={mode} />
+					<TaskInput addTask={addTask} mode={mode} firstLoad={firstLoad} />
 				</div>
 
-				<div className={mode ? `${styles.tasksListContainer} ${styles.tasksListContainerLight}` : `${styles.tasksListContainer} ${styles.tasksListContainerDark}`}>
+				<div className={assignClasses("tasksListContainer")}>
 					{renderTasks()}
 					<div className={styles.taskCounterContainer}>
 						<p>{incompleteItemCounter} items left</p>
 						<div className={styles.taskFilterContainerDesktop}>
-							<TaskFilter mode={mode} filter={filter} setFilter={setFilter}/>
+							<TaskFilter mode={mode} filter={filter} setFilter={setFilter} firstLoad={firstLoad}/>
 						</div>
 						<button type="button" onClick={deleteAllCompletedTasks} className={styles.deleteAllButton}>Clear Completed</button> 
 					</div>
 				</div>
 
 				<div className={styles.taskFilterContainerMobile}>
-					<TaskFilter mode={mode} filter={filter} setFilter={setFilter}/>
+					<TaskFilter mode={mode} filter={filter} setFilter={setFilter} firstLoad={firstLoad}/>
 				</div>
 
-				<p className={mode ? `${styles.reorderMessage} ${styles.reorderMessageLight}` : `${styles.reorderMessage} ${styles.reorderMessageDark}`}>Drag and drop to reorder list</p>
+				<p className={assignClasses("reorderMessage")}>Drag and drop to reorder list</p>
 				
 			</main>
 

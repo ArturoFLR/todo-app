@@ -41,6 +41,69 @@ body {
 	min-height: 100vh;
 }
 
+@keyframes darkModeBGAnimDesktop {
+	0% {
+		background-image: url("@/img/bg-desktop-light.jpg");
+		background-color: $LTVeryLightGray;
+	}
+	100% {
+		background-image: url("@/img/bg-desktop-dark.jpg");
+		background-color: $DTVeryDarkBlue;
+	}
+}
+
+@keyframes lightModeBGAnimDesktop {
+	0% {
+		background-image: url("@/img/bg-desktop-dark.jpg");
+		background-color: $DTVeryDarkBlue;
+	}
+	100% {
+		background-image: url("@/img/bg-desktop-light.jpg");
+		background-color: $LTVeryLightGray;
+	}
+}
+
+@keyframes darkModeMainContainerAnimMobile {
+	0% {
+		background-image: url("@/img/bg-mobile-light.jpg");
+		background-color: $LTVeryLightGray;
+	}
+	100% {
+		background-image: url("@/img/bg-mobile-dark.jpg");
+		background-color: $DTVeryDarkBlue;
+	}
+}
+
+@keyframes lightModeMainContainerAnimMobile {
+	0% {
+		background-image: url("@/img/bg-mobile-dark.jpg");
+		background-color: $DTVeryDarkBlue;
+	}
+	100% {
+		background-image: url("@/img/bg-mobile-light.jpg");
+		background-color: $LTVeryLightGray;
+	}
+}
+
+@keyframes darkModeTasksListContainerAnimMobile {
+	0% {
+		background-color: white;
+	}
+	100% {
+		background-color: $DTVeryDarkDesaturatedBlue;
+	}
+}
+
+@keyframes lightModeTasksListContainerAnimMobile {
+	0% {
+		background-color: $DTVeryDarkDesaturatedBlue;
+	}
+	100% {
+		background-color: white;
+	}
+}
+
+
 .mainContainer {
 	display: flex;
 	flex-direction: column;
@@ -81,6 +144,14 @@ body {
 .mainContainerDark {
 	background-color: $DTVeryDarkBlue;
 	background-image: url("@/img/bg-mobile-dark.jpg");
+}
+
+.mainContainerAnimatedLight {
+	animation: lightModeMainContainerAnimMobile forwards 1s;
+}
+
+.mainContainerAnimatedDark {
+	animation: darkModeMainContainerAnimMobile forwards 1s;
 }
 
 .sectionMainContainer {
@@ -207,6 +278,10 @@ body {
 	}
 }
 
+.tasksListContainerAnimatedLight {
+	animation: lightModeTasksListContainerAnimMobile forwards 1s;
+}
+
 .tasksListContainerDark {
 	background-color: $DTVeryDarkDesaturatedBlue;
 
@@ -242,6 +317,10 @@ body {
 			}
 		}
 	}
+}
+
+.tasksListContainerAnimatedDark {
+	animation: darkModeTasksListContainerAnimMobile forwards 1s;
 }
 
 .taskFilterContainerMobile {
@@ -289,6 +368,14 @@ body {
 		background-image: url("@/img/bg-desktop-dark.jpg");
 	}
 
+	.mainContainerAnimatedLight {
+		animation: lightModeBGAnimDesktop forwards 1s;
+	}
+
+	.mainContainerAnimatedDark {
+		animation: darkModeBGAnimDesktop forwards 1s;
+	}
+
 	.tasksInputMainContainer {
 		margin: 4vh 0vw 2.8vh 0vw;
 	}
@@ -322,7 +409,7 @@ body {
 				opacity: 0;
 				scale: 0.1;
 				transition-property: opacity, scale;
-				transition-duration: 1s;
+				transition-duration: 0.4s;
 			}
 
 			&:hover img {

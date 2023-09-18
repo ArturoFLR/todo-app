@@ -10,6 +10,23 @@ $DTVeryDarkDesaturatedBlue: hsl(235, 24%, 19%);
 $DTLightGrayishBlueHover: hsl(236, 33%, 92%);
 $DTDarkGrayishBlue: hsl(234, 11%, 52%);
 
+@keyframes mainContainerAnimatedLight {
+	0% {
+		background-color: $DTVeryDarkDesaturatedBlue;
+	}
+	100% {
+		background-color: white;
+	}
+}
+
+@keyframes mainContainerAnimatedDark {
+	0% {
+		background-color: white;
+	}
+	100% {
+		background-color: $DTVeryDarkDesaturatedBlue;
+	}
+}
 
 .mainContainer {
 	display: flex;
@@ -65,6 +82,14 @@ $DTDarkGrayishBlue: hsl(234, 11%, 52%);
 	.filterActive {
 		color: $BrightBlue;
 	}
+}
+
+.mainContainerAnimatedLight {
+	animation: mainContainerAnimatedLight forwards 1s;
+}
+
+.mainContainerAnimatedDark {
+	animation: mainContainerAnimatedDark forwards 1s;
 }
 
 @media (min-width: 1000px) {
